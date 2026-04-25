@@ -10,7 +10,6 @@ class User(Base):
     hashed_password = Column(String)
     is_active = Column(Boolean, default=True)
 
-    # Relasi: Satu user punya banyak todo
     todos = relationship("Todo", back_populates="owner")
 
 class Todo(Base):
@@ -22,5 +21,4 @@ class Todo(Base):
     is_completed = Column(Boolean, default=False)
     owner_id = Column(Integer, ForeignKey("users.id"))
 
-    # Relasi balik ke tabel User
     owner = relationship("User", back_populates="todos")
